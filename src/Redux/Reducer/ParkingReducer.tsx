@@ -9,18 +9,10 @@ const ParkingReducer = (state = initialState, action: any) => {
         ...state,
         ParkingLot: [...state.ParkingLot, action.payload],
       };
-    case "GET_PARKING_LOT":
+    case "DEALLOCATE_PARKING":
       return {
         ...state,
         ParkingLot: action.payload,
-      };
-    case "DEALLOCATE_PARKING":
-      const updatedParking = state.ParkingLot.filter(
-        (car: any) => car.carid !== action.payload
-      );
-      return {
-        ...state,
-        ParkingLot: updatedParking,
       };
     default:
       return state;

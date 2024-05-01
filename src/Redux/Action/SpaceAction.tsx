@@ -7,11 +7,8 @@ export const setParkingLot = (data:any[]) => ({
   payload: data,
 });
 
-export const getParkingLot = () => ({
-    type: 'GET_PARKING_LOT',
-});
 
-export const deallocateParking = (carId:number) => ({
+export const deallocateParking = (UpdatedData:[]) => ({
   type: 'DEALLOCATE_PARKING',
-  payload: carId,
+  payload: UpdatedData,
 });

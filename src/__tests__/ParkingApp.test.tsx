@@ -32,7 +32,6 @@ describe("ParkingApp", () => {
     const SpaceInput = screen.getByPlaceholderText("Enter Space");
     fireEvent.change(SpaceInput, { target: { value: 'P5' } });
     expect(SpaceInput.value).toBe('');
-
     fireEvent.change(SpaceInput, { target: { value: -1 } });
     expect(SpaceInput.value).toBe("")
   });
