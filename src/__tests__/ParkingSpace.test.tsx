@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import ParkingSpace from "../Component/ParkingSpace.tsx";
 import fetchMock from "jest-fetch-mock";
 import configureStore from "redux-mock-store";
+
 fetchMock.enableMocks();
 const mockStore = configureStore([]);
 
@@ -23,6 +24,7 @@ const store = mockStore({
 });
 
 describe("ParkingSpace Comp", () => {
+
   test("Testing Render Comp", async () => {
     render(
       <Provider store={store}>
@@ -57,7 +59,8 @@ describe("ParkingSpace Comp", () => {
     expect(PaymentTaken).toBeInTheDocument();
 
     fireEvent.click(PaymentTaken);
-    expect(fetchMock).toHaveBeenCalledTimes(1);
+    expect(fetchMock).toHaveBeenCalledTimes(1); 
+    
     await waitFor(() => {
       expect(DeallocateForm).not.toBeInTheDocument();
     });
@@ -95,6 +98,7 @@ describe("ParkingSpace Comp", () => {
       </Provider>
     );
     expect(screen.getByText("Parking Space 2")).toBeInTheDocument();
+
     const Occupied = screen.getByText("Occupied");
     expect(Occupied).toBeInTheDocument();
     fireEvent.click(Occupied);
@@ -114,4 +118,5 @@ describe("ParkingSpace Comp", () => {
       expect(DeallocateForm).not.toBeInTheDocument();
     });
   });
+
 });

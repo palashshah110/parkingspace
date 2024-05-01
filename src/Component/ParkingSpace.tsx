@@ -134,7 +134,7 @@ class ParkingSpace extends Component<PropsTypes, StateTypes> {
         </Grid>
         <BootstrapDialog
           title="DialogBox"
-          onClose={() => this.setState({ deallocateOpen: false })}
+          // onClose={() => this.setState({ deallocateOpen: false })}
           aria-labelledby="customized-dialog-title"
           open={this.state.deallocateOpen}
         >

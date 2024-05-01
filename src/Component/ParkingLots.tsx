@@ -118,7 +118,7 @@ class ParkingLots extends Component<PropsTypes, StateTypes> {
             variant="contained"
             startIcon={<Add />}
             onClick={() => this.setState({ DialogOpen: true })}
-            // disabled={this.props.ParkingLot.length === this.props.Space}
+            disabled={(this.props.ParkingLot.length === this.props.Space)}
           >
             New Car Registration
           </Button>
@@ -141,7 +141,7 @@ class ParkingLots extends Component<PropsTypes, StateTypes> {
           </Grid>
 
           <BootstrapDialog
-            onClose={() => this.setState({ DialogOpen: false })}
+            // onClose={() => this.setState({ DialogOpen: false })}
             aria-labelledby="customized-dialog-title"
             open={this.state.DialogOpen}
             title='DialogBox'

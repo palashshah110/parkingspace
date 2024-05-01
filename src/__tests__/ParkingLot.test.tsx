@@ -7,10 +7,11 @@ import {
 } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import Store from "../Redux/Store/Store.tsx";
 import ParkingLots from "../Component/ParkingLots.tsx";
 import configureStore from 'redux-mock-store';
+
 const mockStore = configureStore([]);
+
 const ParkingLot = [
   { carid: 2, RegistrationNo: "MP1", CarParkTime: new Date().getTime() },
 ];
@@ -20,14 +21,14 @@ const store = mockStore({
     ParkingLot
   },
   space:{
-    Space:1
+    Space:2
   }
 });
 
 describe("ParkingLot Comp", () => {
   test("Testing Go back button", () => {
     render(
-      <Provider store={Store}>
+      <Provider store={store}>
         <MemoryRouter
           initialEntries={[{ pathname: "/parkinglot" }]}
         >
@@ -35,6 +36,7 @@ describe("ParkingLot Comp", () => {
         </MemoryRouter>
       </Provider>
     );
+
     const gobackbtn = screen.getByText("Go Back");
     fireEvent.click(gobackbtn);
     expect(window.location.pathname).toBe("/");
@@ -42,7 +44,7 @@ describe("ParkingLot Comp", () => {
 
   test("Testing New Car Registration button", async () => {
     render(
-      <Provider store={Store}>
+      <Provider store={store}>
         <MemoryRouter
           initialEntries={[{ pathname: "/parkinglot" }]}
         >
@@ -64,15 +66,20 @@ describe("ParkingLot Comp", () => {
 
     const SavechangesBtn = screen.getByText("Save changes");
     fireEvent.click(SavechangesBtn);
+  
     const mockPreventDefault = jest.fn();
+  
     const formElement = screen.getByTestId('form');
     formElement.onsubmit = mockPreventDefault;
     fireEvent.submit(formElement);
+  
     expect(mockPreventDefault).toHaveBeenCalled();
-  })  
+  })
+  
+
   test("Testing Dialog Box", async () => {
     render(
-      <Provider store={Store}>
+      <Provider store={store}>
         <MemoryRouter
           initialEntries={[{ pathname: "/parkinglot" }]}
         >
@@ -100,6 +107,7 @@ describe("ParkingLot Comp", () => {
     });
   })  
 
+
   test("Testing Spaces", async () => {
     render(
       <Provider store={store}>
@@ -110,7 +118,6 @@ describe("ParkingLot Comp", () => {
         </MemoryRouter>
       </Provider>
     );
-
     ParkingLot.forEach((_,index) => {
       const parkingSpace = screen.getByText(`Parking Space ${index+1}`);
       expect(parkingSpace).toBeInTheDocument();

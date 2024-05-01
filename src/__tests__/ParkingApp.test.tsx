@@ -4,7 +4,9 @@ import { BrowserRouter } from "react-router-dom";
 import ParkingApp from "../Component/ParkingApp";
 import { Provider } from "react-redux";
 import Store from '../Redux/Store/Store.tsx'
+
 describe("ParkingApp", () => {
+
   test("Change Space Input", () => {
     render(
     <Provider store={Store}>
@@ -21,6 +23,8 @@ describe("ParkingApp", () => {
     fireEvent.submit(form);
     expect(window.location.pathname).toBe('/parkinglot');
   });
+
+
   test("Change Space Input Wrongly", () => {
     render(
         <Provider store={Store}>
@@ -35,4 +39,5 @@ describe("ParkingApp", () => {
     fireEvent.change(SpaceInput, { target: { value: -1 } });
     expect(SpaceInput.value).toBe("")
   });
+
 });

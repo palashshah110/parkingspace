@@ -14,4 +14,4 @@ const initialState = {
     }
   };
   
-  export default SpaceReducer;  
+export default SpaceReducer;  
